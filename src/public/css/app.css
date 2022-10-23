@@ -1,0 +1,25 @@
+/*!**************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/app/css/styles.css ***!
+  \**************************************************************************/
+body,
+html {
+  background-color: #e7eef4;
+  /* background-color: #f3f9fe; */
+}
+
+.br10 {
+  border-radius: 10px;
+}
+
+.mv10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mv20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+/*# sourceMappingURL=app.css.map*/

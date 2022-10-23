@@ -3,6 +3,7 @@ import { Card, Table, Drawer, Button, Tabs } from "antd";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { compsColumns, prodsColumns } from "./config-column";
+import { DataGraphLine } from "./components/Line";
 
 export default () => {
   const [visible, setVisible] = React.useState(false);
@@ -27,6 +28,7 @@ export default () => {
 
   return (
     <div
+      className={"mv20"}
       style={{
         maxWidth: 1024,
         marginTop: 10,
@@ -92,20 +94,14 @@ export default () => {
             <Table
               columns={prodsColumns}
               dataSource={productions}
-              pagination={{
-                pageSize: 50,
-              }}
-              scroll={{
-                y: 500,
-                x: 900,
-              }}
+              pagination={{ pageSize: 50 }}
+              scroll={{ y: 500, x: 900 }}
             />
           </Tabs.TabPane>
           <Tabs.TabPane tab="Data graph" key="item-2">
-            Content 2
+            <DataGraphLine data={productions} />
           </Tabs.TabPane>
         </Tabs>
-        ;
       </Card>
 
       <Drawer

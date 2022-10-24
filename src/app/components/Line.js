@@ -16,10 +16,10 @@ export const DataGraphLine = ({ data = [] }) => {
   ];
 
   const config = {
-    data,
-    xField: "Year",
-    yField: "TD",
-    seriesField: "reservoir",
+    data: data.filter((_, i) => i < 1000),
+    xField: "year",
+    yField: "value",
+    seriesField: "category",
     yAxis: {
       label: {
         // formatter: (v) => Number(v),
@@ -27,24 +27,30 @@ export const DataGraphLine = ({ data = [] }) => {
           `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`),
       },
     },
-    // animation: {
-    //   appear: {
-    //     animation: "path-in",
-    //     duration: 5000,
-    //   },
-    // },
     color: COLOR_PLATE_10,
-    // point: {
-    //   shape: ({ reservoir }) => {
-    //     return reservoir === "Red" ? "square" : "circle";
-    //   },
-    //   style: ({ year }) => {
-    //     return {
-    //       r: Number(year) % 4 ? 0 : 3, // 4 个数据示一个点标记
-    //     };
-    //   },
-    // },
+    point: {
+      shape: ({ reservoir }) => {
+        return "circle";
+      },
+      style: ({ year }) => {
+        return {
+          r: Number(year) % 4 ? 0 : 3, // 4 个数据示一个点标记
+        };
+      },
+    },
   };
+
+  /*
+  const config = {
+    data,
+    padding: "auto",
+    xField: "Year",
+    yField: "Qo",
+    xAxis: {
+      tickCount: 5,
+    },
+  };
+  */
 
   return <Line {...config} />;
 };

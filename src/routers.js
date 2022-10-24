@@ -44,10 +44,24 @@ const getProductions = async (_, res) => {
     flag: "r",
   });
 
-  const data = papa.parse(csv, {
-    header: true,
-    skipEmptyLines: true,
-  }).data;
+  const data = papa
+    .parse(csv, {
+      header: true,
+      skipEmptyLines: true,
+    })
+    .data.map((item) => ({
+      ...item,
+      Qg: Number(item?.Qg),
+      Qo: Number(item?.Qo),
+      Qs: Number(item?.Qs),
+      Qw: Number(item?.Qw),
+      Status: Number(item?.Status),
+      Year: Number(item?.Year),
+      Date: `${item?.Year}-${item?.Month}`,
+    }))
+    .sort(
+      ({ Date: a }, { Date: b }) => new Date(a).getTime() - new Date(b).getTime
+    );
 
   return res.status(200).json({ data });
 };
